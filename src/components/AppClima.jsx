@@ -14,8 +14,6 @@ const AppClima = () => {
                 <Formulario />
                 {resultadoclima&&  <RespFormulario />}
                 {resultadogeo&& <RespGeo/>}
-                
-               
             </main>
         </>
     )

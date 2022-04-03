@@ -1,22 +1,15 @@
 import useClima from '../hooks/useClima'
 import moment from 'moment';
-import 'moment/min/moment-with-locales'
-import 'moment/locale/es';
-import 'moment/src/locale/es'
-
-
+import 'moment/locale/es'
 
 const RespGeo = () => {
 
-
+//Aqui tomo las variables que necesito para mostrar el clima.
 const {resultadogeo,ciudadgeo}= useClima()
 const {daily,current} = resultadogeo
 // console.log(resultadogeo);
 const kelvin = 273.15
 moment.locale('es');
-
-
-
 
   return (
     <>
@@ -33,8 +26,6 @@ moment.locale('es');
           <p className='text-xl'>{moment().add(4,'days').calendar() } {parseInt(daily[3].temp.day - kelvin)}<span>°C</span></p>
           <p className='text-xl'>{moment().add(5,'days').calendar() } {parseInt(daily[4].temp.day - kelvin)}<span>°C</span></p>
      </div>
-    
-      
     </div>
     </>
   )
