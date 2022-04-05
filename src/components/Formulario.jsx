@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import useClima from '../hooks/useClima'
 
+
 const Formulario = () => {
 //Utilizo el hook para importar rapidamente funciones
 const {seleccion,buscar,consultarClima,consultarGeo,setResultadoClima,setResultadoGeo} = useClima()

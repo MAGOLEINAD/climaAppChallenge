@@ -18,9 +18,12 @@ const ClimaProvider = ({children}) => {
     const [resultadogeo,setResultadoGeo] = useState()
     //Necesito esta variable para setear la ciudad en el componente de RespGeo
     const [ciudadgeo,setCiudadGeo] = useState()
+    // Necesito esta variable para utilizar un Loader
+    const [loader,setLoader] = useState()
     //Funcion para consultar a la API que toma los datos que envia seleccion
     const consultarClima = async (datos) => {
         try {
+            setLoader(1)
             const appId = import.meta.env.VITE_API_KEY
             const url= `http://api.openweathermap.org/geo/1.0/direct?q=${datos}&limit=1&appid=${appId}`
     //Axios devuelve en objeto de Data la peticion en formato JSON
@@ -38,6 +41,7 @@ const ClimaProvider = ({children}) => {
             // console.log(urlClima);
             setResultadoClima(clima)
             // console.log(clima);
+            setLoader(3)
         } catch (error) {
             console.log(error);
         }
@@ -45,6 +49,7 @@ const ClimaProvider = ({children}) => {
   //Funcion para consultar a la API la geolocalizacion desde donde estoy
   const consultarGeo = async () => {
     try {
+        setLoader(2)
         const appId = import.meta.env.VITE_API_KEY
         const appIdGeo = import.meta.env.VITE_API_IP_KEY
         const urlGeo= `http://api.ipapi.com/check?access_key=${appIdGeo}` 
@@ -60,6 +65,7 @@ const ClimaProvider = ({children}) => {
         const {data:climaGeo} = await axios(urlClima)
         // console.log(urlClima);
         setResultadoGeo(climaGeo)
+        setLoader(3)
        
       
     } catch (error) {
@@ -72,6 +78,7 @@ const ClimaProvider = ({children}) => {
     
     value={{
         seleccion,
+        loader,
         buscar,
         consultarClima,
         setResultadoClima,
